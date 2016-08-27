@@ -18,7 +18,7 @@ mongoose.connect(configDB.url); //connect to database
 app.use(morgan('dev')); //log every request to console
 app.use(cookieParser());//read cookies
 //app.use(bodyParser());  //get information from html forms // DEPRECATED
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Set Public Folder
