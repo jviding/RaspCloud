@@ -29,9 +29,9 @@
     <div class="container">
     	<div class="jumbotron text-center">
     		<h2>My groups</h2>
-			<ul>
+			<ul style="list-style-type: none;">
 				<% for (var i=0; i<groups.length; i++) { %>
-   					<li><a href="/<%= groups[i] %>"><%= groups[i] %></a></li>
+   					<li><a href="/group/<%= groups[i] %>"><%= groups[i] %></a></li>
 				<% } %>
 			</ul>
     	</div>
