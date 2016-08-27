@@ -1,3 +1,5 @@
+var Group = require('../app/models/group');
+
 module.exports = function (app, passport) {
 	
 	// Home Page
@@ -16,7 +18,7 @@ module.exports = function (app, passport) {
 	app.get('/profile', isLoggedIn, function (req, res) {
 		res.render('profile.ejs', {
 			user : req.user,
-			groups: ['a', 'b', 'c']
+			groups: getGroups()
 		});
 	});
 
@@ -27,18 +29,18 @@ module.exports = function (app, passport) {
 
 	// Manage Groups
 	app.get('/managegroups', isLoggedAdmin, function (req, res) {
+		var message = req.session.message;
+		req.session.message = null;
 		res.render('managegroups.ejs', {
-			message: '',
-			groups: ['a', 'b', 'c']
+			message: message,
+			groups: getGroups()
 		});
 	});
 
 	// Create a new Group
 	app.post('/creategroup', isLoggedAdmin, function (req, res) {
-		res.render('managegroups.ejs', {
-			message: 'Success',
-			groups: ['a', 'b', 'c']
-		});
+		req.session.message = createNewGroup(req);
+		res.redirect('/managegroups');
 	});
 
 	// Logout
@@ -77,4 +79,32 @@ function notLoggedIn(req, res, next) {
 	}
 	//if they are, redirect them to the home page
 	res.redirect('/profile');
+};
+
+// Create a new group
+function createNewGroup(req) {
+	Group.findOne({'name' : req.body.name }, function (err, group) {
+		if (err) { return 'something went wrong'; }
+		if (group) { return 'name already taken!'; }
+		else {
+			var newGroup = new Group();
+			newGroup.name = req.body.name;
+			newGroup.save(function (err) {
+				if (err) { throw err; }
+				return 'Successfully created!';
+			});
+		}
+	});
+};
+
+// Create a list of all groups
+function getGroups() {
+	var groups = [];
+	Group.find(function (err, all) {
+		if (err) { return groups; }
+		all.forEach(function (one) {
+			groups.push(one.name);
+		});
+	});
+	return groups;
 };
