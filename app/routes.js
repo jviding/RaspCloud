@@ -112,6 +112,8 @@ function getGroups(req, callback) {
 		all.forEach(function (one) {
 			groups.push(one.name);
 		});
+		console.log('groups are:');
+		console.log(groups);
+		callback(groups);
 	});
-	callback(groups);
 };
