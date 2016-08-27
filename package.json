@@ -11,6 +11,7 @@
     "express": "latest",
     "express-session": "latest",
     "mongoose": "latest",
+    "morgan": "latest",
     "passport": "latest",
     "passport-facebook": "latest"
   },
