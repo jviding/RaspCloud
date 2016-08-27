@@ -28,8 +28,7 @@ app.use(session({
 	secret:'this_to_be_changed_for_production',
 	saveUninitialized: true,
 	resave: true,
-	cookie: { secure: true },
-	store: new MongoStore({})	
+	cookie: { secure: true }	
 }));
 app.use(passport.initialize());
 app.use(passport.session()); //persistent login sessions
