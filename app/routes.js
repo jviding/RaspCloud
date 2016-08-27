@@ -24,7 +24,7 @@ module.exports = function (app, passport) {
 		});
 	});
 
-	// Admin
+	// Manage Accounts
 	app.get('/manageaccounts', isLoggedAdmin, function (req, res) {
 		res.render('admin.ejs');
 	});
@@ -46,6 +46,15 @@ module.exports = function (app, passport) {
 		createNewGroup(req, function (message) {
 			req.session.message = message;
 			res.redirect('/managegroups');
+		});
+	});
+
+	// Manage a single Group
+	app.get('/group/:grpId', function (req, res) {
+		console.log('id: '+req.params.grpId);
+		res.render('managegroups.ejs', {
+			message: 'mesaage here',
+			members: ['asd', 'keke', 'lala']
 		});
 	});
 

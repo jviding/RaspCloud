@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>JasuBot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+	
+	<nav class="navbar navbar-inverse" style="border-radius: 0;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">JasuWeb</a>
+            <ul class="nav navbar-nav navbar-right">
+            	<li><a href="/profile">Profile</a></li>
+            	<li><a href="/logout">Log out</a></li>
+          	</ul>
+        </div>
+    </nav>
+
+    <div class="container">
+      <form class="form-signin" action="/creategroup" method="POST">
+        <h1>GROUP NAME HERE</h1>
+        <h2 class="form-signin-heading">Add a new member</h2>
+        <% if (message) { %>
+        	<p><%= message %></p>
+        <% } %>
+        <input type="text" id="name" name="name" class="form-control" placeholder="Group name" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
+      </form>
+    </div>
+
+    <div class="container">
+    	<div class="jumbotron text-center">
+    		<h2>Members</h2>
+			<ul style="list-style-type: none;">
+				<% for (var i=0; i<members.length; i++) { %>
+   					<li><%= members[i].name %></a></li>
+				<% } %>
+			</ul>
+    	</div>
+    </div>
+
+</div>
+</body>
+</html>
