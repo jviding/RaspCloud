@@ -20,7 +20,12 @@ app.set('view engine', 'ejs'); //set up ejs for templating
 app.use(express.static(__dirname + '/public'));
 
 // Passport
-app.use(session({secret:'this_to_be_changed_for_production'}));
+app.use(session({
+	secret:'this_to_be_changed_for_production',
+	resave: false,
+	saveUninitialized: true,
+	cookie: { secure: true}	
+}));
 app.use(passport.initialize());
 app.use(passport.session()); //persistent login sessions
 
