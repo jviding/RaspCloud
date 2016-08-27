@@ -30,12 +30,12 @@ module.exports = function (app, passport) {
 	// Manage Groups
 	app.get('/managegroups', isLoggedAdmin, function (req, res) {
 		var message = req.session.message;
-		console.log('toka:');
-		console.log(req.session.message);
 		req.session.message = null;
-		res.render('managegroups.ejs', {
-			message: message,
-			groups: getGroups()
+		getGroups(req, function (groups) {
+			res.render('managegroups.ejs', {
+				message: message,
+				groups: groups
+			});
 		});
 	});
 
@@ -103,7 +103,7 @@ function createNewGroup(req, callback) {
 };
 
 // Create a list of all groups
-function getGroups() {
+function getGroups(req, callback) {
 	var groups = [];
 	Group.find({}, function (err, all) {
 		if (err) { return groups; }
@@ -111,5 +111,5 @@ function getGroups() {
 			groups.push(one.name);
 		});
 	});
-	return groups;
+	callback(groups);
 };
