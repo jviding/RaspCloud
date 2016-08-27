@@ -89,6 +89,10 @@ function createNewGroup(req) {
 		else {
 			var newGroup = new Group();
 			newGroup.name = req.body.name;
+			console.log('creating a new group with a name');
+			console.log(req.body);
+			console.log('was body next:');
+			console.log(req.body.name);
 			newGroup.save(function (err) {
 				if (err) { throw err; }
 				return 'Successfully created!';
