@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
   	"bcrypt-nodejs": "latest",
+  	"body-parser": "latest",
   	"bootstrap": "latest",
   	"cookie-parser": "latest",
     "ejs": "latest",

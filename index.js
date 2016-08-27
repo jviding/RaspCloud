@@ -6,6 +6,7 @@ var morgan = require('morgan');
 var passport = require('passport');
 var session = require('express-session')
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var configDB = require('./config/database');
 
@@ -16,6 +17,7 @@ mongoose.connect(configDB.url); //connect to database
 // Set up express application
 app.use(morgan('dev')); //log every request to console
 app.use(cookieParser());//read cookies
+app.use(bodyParser());  //get information from html forms
 
 // Set Public Folder
 app.set('view engine', 'ejs'); //set up ejs for templating
@@ -24,9 +26,10 @@ app.use(express.static(__dirname + '/public'));
 // Passport
 app.use(session({
 	secret:'this_to_be_changed_for_production',
-	resave: false,
 	saveUninitialized: true,
-	cookie: { secure: true}	
+	resave: true,
+	cookie: { secure: true },
+	store: new MongoStore({})	
 }));
 app.use(passport.initialize());
 app.use(passport.session()); //persistent login sessions
