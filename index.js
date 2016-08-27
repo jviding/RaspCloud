@@ -17,7 +17,9 @@ mongoose.connect(configDB.url); //connect to database
 // Set up express application
 app.use(morgan('dev')); //log every request to console
 app.use(cookieParser());//read cookies
-app.use(bodyParser());  //get information from html forms
+//app.use(bodyParser());  //get information from html forms // DEPRECATED
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 
 // Set Public Folder
 app.set('view engine', 'ejs'); //set up ejs for templating
