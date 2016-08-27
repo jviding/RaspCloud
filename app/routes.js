@@ -13,7 +13,7 @@ module.exports = function (app, passport) {
 	}));
 
 	// Profile
-	app.get('/profile', function (req, res) {
+	app.get('/profile', isLoggedIn, function (req, res) {
 		res.render('profile.ejs', {
 			user : req.user,
 			groups: ['a', 'b', 'c']
@@ -23,6 +23,13 @@ module.exports = function (app, passport) {
 	// Admin
 	app.get('/admin', isLoggedAdmin, function (req, res) {
 		res.render('admin.ejs');
+	});
+
+	// Manage Groups
+	app.get('/managegroups', isLoggedAdmin, function (req, res) {
+		res.render('managegroups.ejs', {
+			groups: ['a', 'b', 'c']
+		});
 	});
 
 	// Logout
