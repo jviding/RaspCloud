@@ -27,13 +27,13 @@ module.exports = function(passport) {
 	},
 	function(req, token, refreshToken, profile, done) {
 		process.nextTick(function () {
-			console.log('User trying to log in.');
 			if (!req.user) {
 				User.findOne({'facebook.id' : profile.id}, function (err, user) {
 					if (err) {
 						return done(err);
 					}
 					if (user) {
+						console.log(profile.displayName + ' has logged in!');
 						return done(null, user);
 					}
 					else {
@@ -50,8 +50,10 @@ module.exports = function(passport) {
 
 						newUser.save(function (err) {
 							if (err) {
+								console.log(profile.displayName + ' failed to register!');
 								throw err;
 							}
+							console.log(profile.displayName + ' has registered!');
 							return done(null, newUser);
 						});
 					}

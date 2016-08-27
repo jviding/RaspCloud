@@ -16,9 +16,11 @@ module.exports = function (app, passport) {
 
 	// Profile
 	app.get('/profile', isLoggedIn, function (req, res) {
-		res.render('profile.ejs', {
-			user : req.user,
-			groups: getGroups()
+		getGroups(req, function (groups) {
+			res.render('profile.ejs', {
+				user : req.user,
+				groups: getGroups()
+			});
 		});
 	});
 
