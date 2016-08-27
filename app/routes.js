@@ -126,7 +126,7 @@ function getGroups(req, callback) {
 
 // View ManageGroup
 function viewManageGroup(id, callback) {
-	Group.findOne({'id':id}, function (err, group) {
+	Group.findOne({'_id':id}, function (err, group) {
 		if (err) { callback(null); }
 		console.log('found' + group);
 		callback(group);
