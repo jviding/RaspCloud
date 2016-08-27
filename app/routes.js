@@ -52,7 +52,7 @@ module.exports = function (app, passport) {
 	// Manage a single Group
 	app.get('/group/:grpId', function (req, res) {
 		console.log('id: '+req.params.grpId);
-		res.render('managegroups.ejs', {
+		res.render('managegroup.ejs', {
 			message: 'mesaage here',
 			members: ['asd', 'keke', 'lala']
 		});
