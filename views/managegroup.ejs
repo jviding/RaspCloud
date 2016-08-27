@@ -33,8 +33,8 @@
     	<div class="jumbotron text-center">
     		<h2>Members</h2>
 			<ul style="list-style-type: none;">
-				<% for (var i=0; i<group.members.length; i++) { %>
-   					<li><%= group.members[i].name %></a></li>
+				<% for (var i=0; i<group.users.length; i++) { %>
+   					<li><%= group.users[i].familyName %> <%= group.users[i].givenName %></a></li>
 				<% } %>
 			</ul>
     	</div>
