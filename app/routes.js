@@ -106,14 +106,8 @@ function createNewGroup(req, callback) {
 
 // Create a list of all groups
 function getGroups(req, callback) {
-	var groups = [];
 	Group.find({}, function (err, all) {
-		if (err) { return groups; }
-		all.forEach(function (one) {
-			groups.push(one.name);
-		});
-		console.log('groups are:');
-		console.log(groups);
-		callback(groups);
+		if (err) { return []; }
+		callback(all);
 	});
 };
