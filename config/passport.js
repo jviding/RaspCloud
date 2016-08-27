@@ -44,7 +44,7 @@ module.exports = function(passport) {
 						newUser.facebook.familyName = profile.displayName.split(' ')[1];//profile.name.familyName;
 						newUser.facebook.email = profile.displayName;//profile.emails[0].value;
 
-						newUser.channels.authorized = false;
+						newUser.authorized = false;
 						newUser.admin = false;
 
 						newUser.save(function (err) {
