@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var port = 3000;
 var http = require('http').Server(app);
+var morgan = require('morgan');
 var passport = require('passport');
 var session = require('express-session')
 var cookieParser = require('cookie-parser');
@@ -13,6 +14,7 @@ require('./config/passport')(passport);
 mongoose.connect(configDB.url); //connect to database 
 
 // Set up express application
+app.use(morgan('dev')); //log every request to console
 app.use(cookieParser());//read cookies
 
 // Set Public Folder
