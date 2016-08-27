@@ -88,8 +88,8 @@ function notLoggedIn(req, res, next) {
 // Create a new group
 function createNewGroup(req, callback) {
 	Group.findOne({'name' : req.body.name }, function (err, group) {
-		if (err) { callback('something went wrong'); return; }
-		if (group) { callback('name already taken!'); return; }
+		if (err) { callback('Something went wrong!'); return; }
+		if (group) { callback('Name already taken!'); return; }
 		else {
 			var newGroup = new Group();
 			newGroup.name = req.body.name;
