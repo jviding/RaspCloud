@@ -51,10 +51,13 @@ module.exports = function (app, passport) {
 
 	// Manage a single Group
 	app.get('/group/:grpId', function (req, res) {
-		console.log('id: '+req.params.grpId);
-		res.render('managegroup.ejs', {
-			message: 'mesaage here',
-			members: ['asd', 'keke', 'lala']
+		var message = req.session.message;
+		req.session.message = null;
+		viewManageGroup(req.params.grpId, function (group) {
+			res.render('managegroup.ejs', {
+				message: message,
+				group: group
+			});
 		});
 	});
 
@@ -116,7 +119,15 @@ function createNewGroup(req, callback) {
 // Create a list of all groups
 function getGroups(req, callback) {
 	Group.find({}, function (err, all) {
-		if (err) { return []; }
+		if (err) { callback([]); }
 		callback(all);
+	});
+};
+
+// View ManageGroup
+function viewManageGroup(id, callback) {
+	Group.findOne({'id':id}, function (err, group) {
+		if (err) { callback(null); }
+		callback(group);
 	});
 };
