@@ -7,8 +7,34 @@
 </head>
 <body>
 	
-	<div class="container">
-		<h1>Hello World!</h1>
+	<nav class="navbar navbar-inverse" style="border-radius: 0;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">JasuWeb</a>
+            <ul class="nav navbar-nav navbar-right">
+            	<li><a href="logout">Log out</a></li>
+          	</ul>
+        </div>
+    </nav>
+
+    <% if (user && user.admin) { %>
+    	<div class="container">
+    		<div class="jumbotron text-center">
+    			<h2>Admin options</h2>
+				<a href="/accounts" class="btn btn-default">Manage accounts</a><br>
+        		<a href="/groups" class="btn btn-default">Manage groups</a><br>
+    		</div>
+    	</div>
+    <% } %>
+
+    <div class="container">
+    	<div class="jumbotron text-center">
+    		<h2>My groups</h2>
+			<ul>
+				<% for (var i=0; i<groups.length; i++) { %>
+   					<li><%= groups[i] %></li>
+				<% } %>
+			</ul>
+    	</div>
     </div>
 
 </div>
