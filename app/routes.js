@@ -28,6 +28,15 @@ module.exports = function (app, passport) {
 	// Manage Groups
 	app.get('/managegroups', isLoggedAdmin, function (req, res) {
 		res.render('managegroups.ejs', {
+			message: '',
+			groups: ['a', 'b', 'c']
+		});
+	});
+
+	// Create a new Group
+	app.post('/creategroup', isLoggedAdmin, function (req, res) {
+		res.render('managegroups.ejs', {
+			message: 'Success',
 			groups: ['a', 'b', 'c']
 		});
 	});
