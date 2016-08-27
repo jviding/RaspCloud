@@ -1,0 +1,20 @@
+{
+  "name": "RaspiWebsite",
+  "version": "1.0.0",
+  "description": "Website run on Raspberry Pi",
+  "main": "index.js",
+  "dependencies": {
+  	"bcrypt-nodejs": "latest",
+  	"bootstrap": "latest",
+  	"cookie-parser": "latest",
+    "ejs": "latest",
+    "express": "latest",
+    "express-session": "latest",
+    "mongoose": "latest",
+    "passport": "latest",
+    "passport-facebook": "latest"
+  },
+  "scripts": {
+    "start": "node index"
+  }
+}
