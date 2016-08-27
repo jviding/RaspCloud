@@ -16,7 +16,7 @@
         </div>
     </nav>
 
-    <% if (user && user.admin) { %>
+    <% if (user.admin) { %>
     	<div class="container">
     		<div class="jumbotron text-center">
     			<h2>Admin options</h2>
@@ -31,7 +31,7 @@
     		<h2>My groups</h2>
 			<ul>
 				<% for (var i=0; i<groups.length; i++) { %>
-   					<li><%= groups[i] %></li>
+   					<li><a href="/<%= groups[i] %>"><%= groups[i] %></a></li>
 				<% } %>
 			</ul>
     	</div>
