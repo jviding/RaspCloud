@@ -27,4 +27,4 @@ build/Release
 node_modules
 
 # Secret info
-config/auth.js
+config/auth.j
