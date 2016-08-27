@@ -12,6 +12,7 @@ var configDB = require('./config/database');
 
 // Configuration
 require('./config/passport')(passport);
+mongoose.Promise = global.Promise;
 mongoose.connect(configDB.url); //connect to database 
 
 // Set up express application

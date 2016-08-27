@@ -41,10 +41,10 @@ module.exports = function (app, passport) {
 
 	// Create a new Group
 	app.post('/creategroup', isLoggedAdmin, function (req, res) {
-		req.session.message = createNewGroup(req);
-		console.log('eka:');
-		console.log(req.session.message);
-		res.redirect('/managegroups');
+		createNewGroup(req, function (message) {
+			req.session.message = message;
+			res.redirect('/managegroups');
+		});
 	});
 
 	// Logout
