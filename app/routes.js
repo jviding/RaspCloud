@@ -19,7 +19,7 @@ module.exports = function (app, passport) {
 		getGroups(req, function (groups) {
 			res.render('profile.ejs', {
 				user : req.user,
-				groups: getGroups()
+				groups: groups
 			});
 		});
 	});
