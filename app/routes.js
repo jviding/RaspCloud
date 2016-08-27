@@ -23,13 +23,15 @@ module.exports = function (app, passport) {
 	});
 
 	// Admin
-	app.get('/admin', isLoggedAdmin, function (req, res) {
+	app.get('/manageaccounts', isLoggedAdmin, function (req, res) {
 		res.render('admin.ejs');
 	});
 
 	// Manage Groups
 	app.get('/managegroups', isLoggedAdmin, function (req, res) {
 		var message = req.session.message;
+		console.log('toka:');
+		console.log(req.session.message);
 		req.session.message = null;
 		res.render('managegroups.ejs', {
 			message: message,
@@ -40,6 +42,8 @@ module.exports = function (app, passport) {
 	// Create a new Group
 	app.post('/creategroup', isLoggedAdmin, function (req, res) {
 		req.session.message = createNewGroup(req);
+		console.log('eka:');
+		console.log(req.session.message);
 		res.redirect('/managegroups');
 	});
 
