@@ -11,7 +11,7 @@
     		right: 12px;
     		top: 0px;
     		height: 100%;
-    		z-index: -2;
+    		pointer-events: none;
     	}
     	.progbar {
     		position: absolute; 
@@ -22,7 +22,6 @@
     		background: green;
     		opacity: 0.6;
     		border-radius: 4px;
-    		z-index: 2;
     	}
     	.progval {
     		position: absolute;
@@ -55,9 +54,9 @@
     		<form class="form-signin" id="upform" action="/profile/group/<%= group.id %>/upload" method="POST" enctype="multipart/form-data">
         		<div id="wrapper" style="position: relative;" class="container-fluid">
         			<div id="progval" class="progval"></div>
+        			<div class="progwrapper"><div id="progbar" class="progbar"></div></div>
         			<input type="file" id="filein" name="fileUpload" class="form-control">
         			<button id="submitBtn" class="btn btn-lg btn-primary btn-block" type="submit">Upload</button>
-        			<div class="progwrapper"><div id="progbar" class="progbar"></div></div>
       			</div>
       		</form>
     		<h2>Downloads:</h2>
