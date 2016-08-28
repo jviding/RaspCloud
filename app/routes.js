@@ -56,13 +56,13 @@ module.exports = function (app, passport) {
 		var keyword = req.session.search;
 		req.session.search = null;
 		viewManageGroup(req.params.grpId, function (group) {
-			getMembersOfAGroup(group.users, function (members) {
+			//getMembersOfAGroup(group.users, function (members) {
 				if (keyword) {
 					findUsersByKey(keyword, function (results) {
 						res.render('managegroup.ejs', {
 							message: message,
 							group: group,
-							members: members,
+			//				members: members,
 							results: results
 						});
 					});
@@ -70,11 +70,11 @@ module.exports = function (app, passport) {
 					res.render('managegroup.ejs', {
 						message: message,
 						group: group,
-						members: members,
+			//			members: members,
 						results: []
 					});
 				}
-			});
+			//});
 		});
 	});
 
@@ -150,9 +150,8 @@ function getGroups(req, callback) {
 // View ManageGroup
 function viewManageGroup(id, callback) {
 	Group.findOne({'_id':id}, function (err, group) {
-		if (err) { callback(null); }
-		console.log('found' + group);
-		callback(group);
+		if (err) { throw err; }
+		else { callback(group); }
 	});
 };
 

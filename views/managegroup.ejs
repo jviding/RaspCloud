@@ -32,8 +32,8 @@
     <div class="container">
         <h2>Search results:</h2>
         <ul style="list-style-type: none;">
-            <% for (var i=0; i<group.users.length; i++) { %>
-                <li><%= group.users[i].familyName %> <%= group.users[i].givenName %> <a href="#">Add</a></li><br>
+            <% for (var i=0; i<results.length; i++) { %>
+                <li><%= results[i].familyName %> <%= results[i].givenName %> <a href="#">Add</a></li><br>
             <% } %>
         </ul>
     </div>
