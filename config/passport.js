@@ -41,8 +41,8 @@ module.exports = function(passport) {
 						newUser.facebook.id = profile.id;
 						newUser.facebook.token = token;
 						//returns often undefined - take from another source
-						newUser.facebook.givenName = profile.displayName.split(' ')[0];//profile.name.givenName;
-						newUser.facebook.familyName = profile.displayName.split(' ')[1];//profile.name.familyName;
+						newUser.facebook.givenName = profile.displayName.split(' ')[0]
+						newUser.facebook.familyName = profile.displayName.split(' ')[1]
 						newUser.facebook.email = profile.displayName;//profile.emails[0].value;
 
 						newUser.authorized = false;

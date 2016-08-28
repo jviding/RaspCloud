@@ -16,34 +16,23 @@
           	</ul>
         </div>
     </nav>
-
+    <p><%= message %></p>
     <div class="container">
         <h1>Group name: <%= group.name %></h1>
-        <form class="form-signin" action="/group/<%= group.id %>/search" method="POST">
-            <h2 class="form-signin-heading">Add a new member</h2>
-            <% if (message) { %>
-        	   <p><%= message %></p>
-            <% } %>
-            <input type="text" id="name" name="name" class="form-control" placeholder="Member name" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
-        </form>
-    </div>
-
-    <div class="container">
-        <h2>Search results:</h2>
+        <h2>Members:</h2>
         <ul style="list-style-type: none;">
-            <% for (var i=0; i<results.length; i++) { %>
-                <li><%= results[i].familyName %> <%= results[i].givenName %> <a href="#">Add</a></li><br>
+            <% for (var i=0; i<users.length; i++) { %>
+                <li><%= users[i].familyName %> <%= users[i].givenName %> <a href="#">Add</a></li><br>
             <% } %>
         </ul>
     </div>
 
     <div class="container">
     	<div class="jumbotron text-center">
-    		<h2>Members</h2>
+    		<h2>Other users:</h2>
 			<ul style="list-style-type: none;">
-				<% for (var i=0; i<group.users.length; i++) { %>
-   					<li><%= group.users[i].familyName %> <%= group.users[i].givenName %> <a href="#">Remove</a></li><br>
+				<% for (var i=0; i<users.length; i++) { %>
+   					<li><%= users.users[i].familyName %> <%= users[i].givenName %> <a href="#">Remove</a></li><br>
 				<% } %>
 			</ul>
     	</div>
