@@ -167,8 +167,8 @@ function notLoggedIn(req, res, next) {
 
 // Create a new group
 function createNewGroup(req, callback) {
-	fs.exists('/media/usb', (exists) => {
-		console.log(exists ? 'its there!' : 'its not there!');
+	fs.exists('/media/usb', function (result) {
+		console.log(result);
 	});
 	Group.findOne({'name' : req.body.name }, function (err, group) {
 		if (err) { callback('Something went wrong!'); return; }
