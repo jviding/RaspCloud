@@ -20,6 +20,12 @@
     <div class="container">
     	<div class="jumbotron text-center">
     		<h1><%= group.name %></h1>
+    		<h2>Upload:</h2>
+    		<form class="form-signin" action="/profile/group/<%= group.id %>/upload" method="POST" enctype="multipart/form-data">
+        		<input type="file" name="fileUpload" class="form-control">
+        		<button class="btn btn-lg btn-primary btn-block" type="submit">Upload</button>
+      		</form>
+    		<h2>Downloads:</h2>
     		<% for (var i=0; i<files.length; i++) { %>
    				<a style="font-size: 130%;" href="/profile/group/<%= group.id %>/download/<%= files[i] %>"><%= files[i] %></a></br>
 			<% } %>
