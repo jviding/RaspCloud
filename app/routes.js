@@ -108,9 +108,12 @@ module.exports = function (app, passport) {
 
 	// View a group
 	app.get('/profile/group/:grpId', isAuthorized, function (req, res) {
+		var message = req.session.message;
+		req.session.message = null;
 		Group.findOne({'_id':req.params.grpId}, function (err, group) {
 			fs.readdir('/media/usb/website/'+group.name+'/', function (err, files) {
 				res.render('group.ejs', {
+					message: message,
 					group: group,
 					files: files
 				});

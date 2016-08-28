@@ -16,7 +16,9 @@
           	</ul>
         </div>
     </nav>
-    <p><%= message %></p>
+    <% if (message) { %>
+        <p><%= message %></p>
+    <% } %>
     <div class="container">
         <h1>Group name: <%= group.name %></h1>
         <h2>Members:</h2>
