@@ -103,12 +103,30 @@ module.exports = function (app, passport) {
 		});
 	});
 
+	// View a group
+	app.get('/profile/:grpId', isAuthorized, function (req, res) {
+		Group.findOne({'_id':req.params.grpId}, function (err, group) {
+			res.render('group.ejs', {
+				group: group
+			});
+		});
+	});
+
 	// Logout
 	app.get('/logout', function (req, res) {
 		req.logout();
 		res.redirect('/');
 	});
 
+};
+
+function isAuthorized(req, res, next) {
+	Group.findOne({'_id':req.params.grpId}, function (err, group) {
+		if (req.isAuthenticated() && group.users.indexOf(req.user.id) !== -1) {
+			return next();
+		}
+		res.redirect('/');
+	});
 };
 
 //route middleware to make sure a user is logged in
