@@ -7,7 +7,7 @@ function uploadFile (event) {
 		if (e.lengthComputable) {
 			var prg = parseInt(e.loaded / e.total * 100);
 			console.log(prg);
-			progbar.style.width = prg;
+			progbar.style.width = prg+'%';
 		}
 	}, false);
 	xhr.onreadystatechange = function (e) {
