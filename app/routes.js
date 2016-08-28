@@ -69,13 +69,17 @@ module.exports = function (app, passport) {
 		Group.findOne({'_id':req.params.grpId}, function (err, group) {
 			if (err) { throw err; }
 			else {
-				group.users.push(req.params.usrId);
-				group.save(function (err) {
-					if (err) { throw err; }
-					else {
-						res.redirect('/group/'+req.params.grpId);
-					}
-				});
+				if (group.users.indexOf(req.params.usrId) === -1) {
+					group.users.push(req.params.usrId);
+					group.save(function (err) {
+						if (err) { throw err; }
+						else {
+							res.redirect('/group/'+req.params.grpId);
+						}
+					});
+				} else {
+					res.redirect('/group/'+req.params.grpId);
+				}
 			}
 		});
 	});
@@ -84,7 +88,7 @@ module.exports = function (app, passport) {
 		Group.findOne({'_id':req.params.grpId}, function (err, group) {
 			if (err) { throw err; }
 			else {
-				group.users.push(req.params.usrId);
+				group.users.splice(group.users.indexOf(req.params.usrId), 1);
 				group.save(function (err) {
 					if (err) { throw err; }
 					else {
