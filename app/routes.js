@@ -109,7 +109,7 @@ module.exports = function (app, passport) {
 	// View a group
 	app.get('/profile/group/:grpId', isAuthorized, function (req, res) {
 		Group.findOne({'_id':req.params.grpId}, function (err, group) {
-			fs.readdir('/media/usb/website/'+group.name+'/', function (files) {
+			fs.readdir('/media/usb/website/'+group.name+'/', function (err, files) {
 				res.render('group.ejs', {
 					group: group,
 					files: files
