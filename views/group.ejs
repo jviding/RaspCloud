@@ -21,7 +21,7 @@
     	<div class="jumbotron text-center">
     		<h1><%= group.name %></h1>
     		<% for (var i=0; i<files.length; i++) { %>
-   				<a style="font-size: 130%;" href="/profile/group/<%= files[i] %>/download"><%= files[i] %></a></br>
+   				<a style="font-size: 130%;" href="/profile/group/<%= group.id %>/download/<%= files[i] %>"><%= files[i] %></a></br>
 			<% } %>
     	</div>
     </div>

@@ -117,8 +117,13 @@ module.exports = function (app, passport) {
 			});
 		});
 	});
-	app.get('/profile/group/:grpId/download', isAuthorized, function (req, res) {
 
+	// Download a file
+	app.get('/profile/group/:grpId/download/:fileName', isAuthorized, function (req, res) {
+		Group.findOne({'_id':req.params.grpId}, function (err, group) {
+			var path = '/media/usb/website/'+group.name+'/'+req.params.fileName;
+			res.download(path);
+		});
 	});
 
 	// Logout
