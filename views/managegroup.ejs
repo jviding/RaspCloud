@@ -19,7 +19,7 @@
 
     <div class="container">
         <h1>Group name: <%= group.name %></h1>
-        <form class="form-signin" action="/searchmember" method="POST">
+        <form class="form-signin" action="/group/<%= group.id %>/search" method="POST">
             <h2 class="form-signin-heading">Add a new member</h2>
             <% if (message) { %>
         	   <p><%= message %></p>
