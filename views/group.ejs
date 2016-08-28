@@ -13,8 +13,16 @@
     		width: 0px;
     		background: green;
     		opacity: 0.6;
-    		margin: 0 8px;
+    		margin-left: 12px;
+    		margin-right: 12px;
     		border-radius: 4px;
+    	}
+    	.progval {
+    		position: absolute;
+    		font-size: 200%;
+    		color: white;
+    		bottom: 3px;
+    		left: 3px;
     	}
     </style>
 </head>
@@ -40,6 +48,7 @@
     		<form class="form-signin" id="upform" action="/profile/group/<%= group.id %>/upload" method="POST" enctype="multipart/form-data">
         		<div id="wrapper" style="position: relative;" class="container-fluid">
         			<div id="progbar" class="progbar"></div>
+        			<div id="progval" class="progval"></div>
         			<input type="file" id="filein" name="fileUpload" class="form-control">
         			<button id="submitBtn" class="btn btn-lg btn-primary btn-block" type="submit">Upload</button>
       			</div>
