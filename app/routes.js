@@ -60,6 +60,8 @@ module.exports = function (app, passport) {
 			//getMembersOfAGroup(group.users, function (members) {
 				if (keyword) {
 					findUsersByKey(keyword, function (results) {
+						console.log('found users:');
+						console.log(results);
 						res.render('managegroup.ejs', {
 							message: message,
 							group: group,
