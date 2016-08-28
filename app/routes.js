@@ -130,22 +130,29 @@ module.exports = function (app, passport) {
 	app.post('/profile/group/:grpId/upload', isAuthorized, function (req, res) {
 		Group.findOne({'_id':req.params.grpId}, function (err, group) {
 			fs.readdir('/media/usb/website/'+group.name+'/', function (err, files) {
-				var filename = req.body.fileUpload;
-				/*if (files.indexOf(req.body.fileUpload) !== -1) {
-					filename = req.user.facebook.givenName + ' ' + filename;
-				}
 				if (!req.files) {
+					req.session.message = 'File upload failed!';
 					res.redirect('/profile/group/'+req.params.grpId);
 				} else {
-					file = req.files.fileUpload;
-					file.mv('/media/usb/website/'+group.name+'/'+filename, function (err) {
-						if (err) { res.status(500).send(err); }
-						else { res.redirect('/profile/group/'+req.params.grpId);}
-					});
-				}*/
-				console.log(filename);
-				console.log(req.files.fileUpload.name)
-				res.redirect('/profile/group/'+req.params.grpId);
+					var filename = req.files.fileUpload.name;
+					filename = filename.replace(/ /g,'');
+					if (files.indexOf(filename) !== -1) {
+						req.session.message = 'File upload failed! File with the same name already exists!';
+						res.redirect('/profile/group/'+req.params.grpId);
+					} else {
+						file = req.files.fileUpload;
+						file.mv('/media/usb/website/'+group.name+'/'+filename, function (err) {
+							if (err) { 
+								req.session.message = 'File upload failed! Something went wrong.';
+								res.redirect('/profile/group/'+req.params.grpId);
+							}
+							else { 
+								req.session.message = 'File successfully uploaded!';
+								res.redirect('/profile/group/'+req.params.grpId);
+							}
+						});
+					}
+				}
 			});
 		});
 	});
