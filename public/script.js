@@ -1,6 +1,6 @@
 var xhr = new XMLHttpRequest();
 xhr.addEventListener('progress', updateProgress);
-xhr.open();
+
 
 function updateProgress (e) {
 	if (e.lengthComputable) {
