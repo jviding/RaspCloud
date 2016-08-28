@@ -7,7 +7,7 @@ function uploadFile (event) {
 	xhr.upload.addEventListener('progress', function (e) {
 		if (e.lengthComputable) {
 			var prg = parseInt(e.loaded / e.total * 100);
-			progval.innerHTML = prg;
+			progval.innerHTML = prg+'%';
 			progbar.style.width = prg+'%';
 		}
 	}, false);
