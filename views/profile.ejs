@@ -29,11 +29,9 @@
     <div class="container">
     	<div class="jumbotron text-center">
     		<h2>My groups</h2>
-			<ul style="list-style-type: none;">
 				<% for (var i=0; i<groups.length; i++) { if (groups[i].users.indexOf(user.id) !== -1) { %>
-   					<li style="font-size: 130%;"><a href="/profile/group/<%= groups[i].id %>"><%= groups[i].name %></a></li>
+   					<a style="font-size: 130%;" href="/profile/group/<%= groups[i].id %>"><%= groups[i].name %></a></br>
 				<% } } %>
-			</ul>
     	</div>
     </div>
 
