@@ -126,6 +126,30 @@ module.exports = function (app, passport) {
 		});
 	});
 
+	// Upload a file
+	app.post('/profile/group/:grpId/upload', isAuthorized, function (req, res) {
+		Group.findOne({'_id':req.params.grpId}, function (err, group) {
+			fs.readdir('/media/usb/website/'+group.name+'/', function (err, files) {
+				var filename = req.body.fileUpload;
+				/*if (files.indexOf(req.body.fileUpload) !== -1) {
+					filename = req.user.facebook.givenName + ' ' + filename;
+				}
+				if (!req.files) {
+					res.redirect('/profile/group/'+req.params.grpId);
+				} else {
+					file = req.files.fileUpload;
+					file.mv('/media/usb/website/'+group.name+'/'+filename, function (err) {
+						if (err) { res.status(500).send(err); }
+						else { res.redirect('/profile/group/'+req.params.grpId);}
+					});
+				}*/
+				console.log(filename);
+				console.log(req.files.fileUpload.name)
+				res.redirect('/profile/group/'+req.params.grpId);
+			});
+		});
+	});
+
 	// Logout
 	app.get('/logout', function (req, res) {
 		req.logout();

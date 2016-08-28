@@ -21,6 +21,7 @@ app.use(cookieParser());//read cookies
 //app.use(bodyParser());  //get information from html forms // DEPRECATED
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(fileUpload());
 
 // Set Public Folder
 app.set('view engine', 'ejs'); //set up ejs for templating

@@ -10,6 +10,7 @@
   	"cookie-parser": "latest",
     "ejs": "latest",
     "express": "latest",
+    "express-fileupload": "latest",
     "express-session": "latest",
     "mongoose": "latest",
     "morgan": "latest",
