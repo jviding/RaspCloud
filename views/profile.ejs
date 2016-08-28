@@ -31,7 +31,7 @@
     		<h2>My groups</h2>
 			<ul style="list-style-type: none;">
 				<% for (var i=0; i<groups.length; i++) { if (groups[i].users.indexOf(user.id) !== -1) { %>
-   					<li style="font-size: 200%;"><a href="/profile/group/<%= groups[i].id %>"><%= groups[i].name %></a></li>
+   					<li style="font-size: 130%;"><a href="/profile/group/<%= groups[i].id %>"><%= groups[i].name %></a></li>
 				<% } } %>
 			</ul>
     	</div>

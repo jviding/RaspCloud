@@ -167,9 +167,7 @@ function notLoggedIn(req, res, next) {
 
 // Create a new group
 function createNewGroup(req, callback) {
-	fs.exists('/media/usb', function (result) {
-		console.log(result);
-	});
+	fs.mkdirSync('/media/usb/website/'+req.body.name);
 	Group.findOne({'name' : req.body.name }, function (err, group) {
 		if (err) { callback('Something went wrong!'); return; }
 		if (group) { callback('Name already taken!'); return; }
