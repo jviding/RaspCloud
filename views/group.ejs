@@ -4,6 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="../../bootstrap.css">
+    <style>
+    	.progbar {
+    		position: absolute; 
+    		left: 0; 
+    		top: 0; 
+    		height: 100%; 
+    		width: 0px;
+    		background: green;
+    		opacity: 0.6;
+    	}
+    </style>
 </head>
 <body>
 	
@@ -26,7 +37,7 @@
         	<% } %>
     		<form class="form-signin" action="/profile/group/<%= group.id %>/upload" method="POST" enctype="multipart/form-data">
         		<div id="wrapper" style="position: relative;" class="container-fluid">
-        			<div id="progbar" style="position: absolute; left: 0; top: 0; height: 100%; width: 0px;"></div>
+        			<div id="progbar"></div>
         			<input type="file" name="fileUpload" class="form-control">
         			<button class="btn btn-lg btn-primary btn-block" type="submit">Upload</button>
       			</div>
@@ -38,6 +49,14 @@
     	</div>
     </div>
 
-</div>
+    <script>
+    	var progbar = document.getElementById('progbar');
+    	var xhr = new XMLHttpRequest();
+    	xhr.upload.addEventListener('progress', function (e) {
+    		var p = parseInt(100 - (e.loaded / e.total * 100));
+    		console.log(p);
+    	}, false);	
+    </script>
+
 </body>
 </html>
