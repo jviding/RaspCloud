@@ -52,10 +52,10 @@
         	<% } %>
     		<form class="form-signin" id="upform" action="/profile/group/<%= group.id %>/upload" method="POST" enctype="multipart/form-data">
         		<div id="wrapper" style="position: relative;" class="container-fluid">
-        			<div class="progwrapper"><div id="progbar" class="progbar"></div></div>
         			<div id="progval" class="progval"></div>
         			<input type="file" id="filein" name="fileUpload" class="form-control">
         			<button id="submitBtn" class="btn btn-lg btn-primary btn-block" type="submit">Upload</button>
+        			<div class="progwrapper"><div id="progbar" class="progbar"></div></div>
       			</div>
       		</form>
     		<h2>Downloads:</h2>
