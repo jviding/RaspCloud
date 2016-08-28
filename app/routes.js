@@ -178,3 +178,10 @@ function findUserById(ids, pointer, users, callback) {
 		});
 	}
 };
+
+function findUsersByKey(key, callback) {
+	User.find({'name':{'$regex':key}}, function (err, users) {
+		if (err) { callback([]); }
+		else { callback(users); }
+	});
+};
