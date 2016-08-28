@@ -5,6 +5,12 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="../../bootstrap.css">
     <style>
+    	.progwrapper {
+    		position: absolute;
+    		left: 12px;
+    		right: 12px;
+    		height: 100%;
+    	}
     	.progbar {
     		position: absolute; 
     		left: 0; 
@@ -13,8 +19,6 @@
     		width: 0px;
     		background: green;
     		opacity: 0.6;
-    		margin-left: 12px;
-    		margin-right: 12px;
     		border-radius: 4px;
     	}
     	.progval {
@@ -47,7 +51,7 @@
         	<% } %>
     		<form class="form-signin" id="upform" action="/profile/group/<%= group.id %>/upload" method="POST" enctype="multipart/form-data">
         		<div id="wrapper" style="position: relative;" class="container-fluid">
-        			<div id="progbar" class="progbar"></div>
+        			<div class="progwrapper"><div id="progbar" class="progbar"></div></div>
         			<div id="progval" class="progval"></div>
         			<input type="file" id="filein" name="fileUpload" class="form-control">
         			<button id="submitBtn" class="btn btn-lg btn-primary btn-block" type="submit">Upload</button>
