@@ -112,6 +112,7 @@ module.exports = function (app, passport) {
 		req.session.message = null;
 		Group.findOne({'_id':req.params.grpId}, function (err, group) {
 			fs.readdir('/media/usb/website/'+group.name+'/', function (err, files) {
+				console.log(req.user.facebook.givenName+' '+req.user.facebook.familyName+' - viewing '+group.name);
 				res.render('group.ejs', {
 					message: message,
 					group: group,
@@ -125,6 +126,7 @@ module.exports = function (app, passport) {
 	app.get('/profile/group/:grpId/download/:fileName', isAuthorized, function (req, res) {
 		Group.findOne({'_id':req.params.grpId}, function (err, group) {
 			var path = '/media/usb/website/'+group.name+'/'+req.params.fileName;
+			console.log(req.user.facebook.givenName+' '+req.user.facebook.familyName+' - downloading '+'/media/usb/website/'+group.name+'/'+req.params.fileName);
 			res.download(path);
 		});
 	});
@@ -134,22 +136,27 @@ module.exports = function (app, passport) {
 		Group.findOne({'_id':req.params.grpId}, function (err, group) {
 			fs.readdir('/media/usb/website/'+group.name+'/', function (err, files) {
 				if (!req.files) {
+					console.log(req.user.facebook.givenName+' '+req.user.facebook.familyName+' - upload failed! No file selected.');
 					req.session.message = 'File upload failed!';
 					res.redirect('/profile/group/'+req.params.grpId);
 				} else {
 					var filename = req.files.fileUpload.name;
 					filename = filename.replace(/ /g,'');
 					if (files.indexOf(filename) !== -1) {
+						console.log(req.user.facebook.givenName+' '+req.user.facebook.familyName+' failed to upload '+filename+' to group '+group.name+'. Filename already exists.');
 						req.session.message = 'File upload failed! File with the same name already exists!';
 						res.redirect('/profile/group/'+req.params.grpId);
 					} else {
+						console.log(req.user.facebook.givenName+' '+req.user.facebook.familyName+' is uploading '+filename+' to group '+group.name+'.');
 						file = req.files.fileUpload;
 						file.mv('/media/usb/website/'+group.name+'/'+filename, function (err) {
 							if (err) { 
+								console.log(req.user.facebook.givenName+' '+req.user.facebook.familyName+' - upload failed!');
 								req.session.message = 'File upload failed! Something went wrong.';
 								res.redirect('/profile/group/'+req.params.grpId);
 							}
 							else { 
+								console.log(req.user.facebook.givenName+' '+req.user.facebook.familyName+' - upload successfully completed!');
 								req.session.message = 'File successfully uploaded!';
 								res.redirect('/profile/group/'+req.params.grpId);
 							}
@@ -162,6 +169,7 @@ module.exports = function (app, passport) {
 
 	// Logout
 	app.get('/logout', function (req, res) {
+		console.log(req.user.facebook.givenName+' '+req.user.facebook.familyName+' has logged out.');
 		req.logout();
 		res.redirect('/');
 	});

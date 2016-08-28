@@ -35,11 +35,11 @@
     		<% if (message) { %>
         		<p><%= message %></p>
         	<% } %>
-    		<form class="form-signin" action="/profile/group/<%= group.id %>/upload" method="POST" enctype="multipart/form-data">
+    		<form class="form-signin" id="upform" action="/profile/group/<%= group.id %>/upload" method="POST" enctype="multipart/form-data">
         		<div id="wrapper" style="position: relative;" class="container-fluid">
         			<div id="progbar"></div>
-        			<input type="file" name="fileUpload" class="form-control">
-        			<button class="btn btn-lg btn-primary btn-block" type="submit">Upload</button>
+        			<input type="file" id="filein" name="fileUpload" class="form-control">
+        			<button id="submitBtn" class="btn btn-lg btn-primary btn-block" type="submit">Upload</button>
       			</div>
       		</form>
     		<h2>Downloads:</h2>
