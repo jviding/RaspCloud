@@ -11,8 +11,8 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">JasuWeb</a>
             <ul class="nav navbar-nav navbar-right">
-            	<li><a href="#profile">Profile</a></li>
-            	<li><a href="#logout">Log out</a></li>
+            	<li><a href="/profile">Profile</a></li>
+            	<li><a href="/logout">Log out</a></li>
           	</ul>
         </div>
     </nav>
@@ -33,7 +33,7 @@
     		<h2>Groups</h2>
 			<ul style="list-style-type: none;">
 				<% for (var i=0; i<groups.length; i++) { %>
-   					<li><a href="#group/<%= groups[i].id %>"><%= groups[i].name %></a></li>
+   					<li><a href="/group/<%= groups[i].id %>"><%= groups[i].name %></a></li>
 				<% } %>
 			</ul>
     	</div>
