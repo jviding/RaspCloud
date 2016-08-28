@@ -53,12 +53,35 @@ module.exports = function (app, passport) {
 	app.get('/group/:grpId', function (req, res) {
 		var message = req.session.message;
 		req.session.message = null;
+		var keyword = req.session.search;
+		req.session.search = null;
 		viewManageGroup(req.params.grpId, function (group) {
-			res.render('managegroup.ejs', {
-				message: message,
-				group: group
+			getMembersOfAGroup(group.users, function (members) {
+				if (keyword) {
+					findUsersByKey(keyword, function (results) {
+						res.render('managegroup.ejs', {
+							message: message,
+							group: group,
+							members: members,
+							results: results
+						});
+					});
+				} else {
+					res.render('managegroup.ejs', {
+						message: message,
+						group: group,
+						members: members,
+						results: []
+					});
+				}
 			});
 		});
+	});
+
+	// Search a user by string
+	app.post('/group/:grpId/search', function (req, res) {
+		req.session.search = req.body.name;
+		res.redirect('/group/'+req.params.grpId);
 	});
 
 	// Logout
@@ -131,4 +154,27 @@ function viewManageGroup(id, callback) {
 		console.log('found' + group);
 		callback(group);
 	});
+};
+
+// Get names of users from a list of ids
+function getMembersOfAGroup(ids, callback) {
+	var users = [];
+	var pointer = 0;
+	findUserById(ids, 0, users, function () {
+
+	});
+};
+
+function findUserById(ids, pointer, users, callback) {
+	if (pointer === ids.length) {
+		callback(users);
+	} else {
+		User.findOne({'_id':ids[pointer]}, function (err, user) {
+			if (err) { callback([]); return; }
+			else {
+				users.push(user);
+				findUserById(ids, pointer++, users, callback);
+			}
+		});
+	}
 };
