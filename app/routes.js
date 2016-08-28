@@ -51,7 +51,7 @@ module.exports = function (app, passport) {
 	});
 
 	// Manage a single Group
-	app.get('/group/:grpId', function (req, res) {
+	app.get('/group/:grpId', isLoggedAdmin, function (req, res) {
 		var message = req.session.message;
 		req.session.message = null;
 		viewManageGroup(req.params.grpId, function (group) {
@@ -62,6 +62,21 @@ module.exports = function (app, passport) {
 					users: users
 				});
 			});
+		});
+	});
+
+	app.get('/group/:grpId/add/:usrId', isLoggedAdmin, function (req, res) {
+		Group.findOne({'_id':req.params.grpId}, function (err, group) {
+			if (err) { throw err; }
+			else {
+				group.users.push(req.params.usrId);
+				group.save(function (err) {
+					if (err) { throw err; }
+					else {
+						res.redirect('/group/'+req.params.grpId);
+					}
+				});
+			}
 		});
 	});
 

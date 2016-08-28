@@ -21,9 +21,9 @@
         <h1>Group name: <%= group.name %></h1>
         <h2>Members:</h2>
         <ul style="list-style-type: none;">
-            <% for (var i=0; i<users.length; i++) { %>
+            <% for (var i=0; i<users.length; i++) { if (group.users.indexOf(users.id) !== -1) { %>
                 <li><%= users[i].facebook.familyName %> <%= users[i].facebook.givenName %> <a href="group/<%= group.id %>/add/<%= users[i].id %>">Add</a></li><br>
-            <% } %>
+            <% } } %>
         </ul>
     </div>
 
@@ -31,9 +31,9 @@
     	<div class="jumbotron text-center">
     		<h2>Other users:</h2>
 			<ul style="list-style-type: none;">
-				<% for (var i=0; i<users.length; i++) { %>
+				<% for (var i=0; i<users.length; i++) { if (group.users.indexOf(users.id) === -1) { %>
    					<li><%= users[i].facebook.familyName %> <%= users[i].facebook.givenName %> <a href="group/<%= group.id %>/remove/<%= users[i].id %>">Remove</a></li><br>
-				<% } %>
+				<% } } %>
 			</ul>
     	</div>
     </div>
