@@ -104,7 +104,7 @@ module.exports = function (app, passport) {
 	});
 
 	// View a group
-	app.get('/profile/:grpId', isAuthorized, function (req, res) {
+	app.get('/profile/group/:grpId', isAuthorized, function (req, res) {
 		Group.findOne({'_id':req.params.grpId}, function (err, group) {
 			res.render('group.ejs', {
 				group: group
