@@ -1,4 +1,5 @@
 var Group = require('../app/models/group');
+var User = require('../app/models/user');
 
 module.exports = function (app, passport) {
 	
