@@ -66,6 +66,7 @@ module.exports = function (app, passport) {
 		});
 	});
 
+	// Add a user to a group
 	app.get('/group/:grpId/add/:usrId', isLoggedAdmin, function (req, res) {
 		Group.findOne({'_id':req.params.grpId}, function (err, group) {
 			if (err) { throw err; }
@@ -85,6 +86,7 @@ module.exports = function (app, passport) {
 		});
 	});
 
+	// Remove user from a group
 	app.get('/group/:grpId/remove/:usrId', isLoggedAdmin, function (req, res) {
 		Group.findOne({'_id':req.params.grpId}, function (err, group) {
 			if (err) { throw err; }
@@ -165,7 +167,9 @@ function notLoggedIn(req, res, next) {
 
 // Create a new group
 function createNewGroup(req, callback) {
-
+	fs.exists('/media/usb', (exists) => {
+		console.log(exists ? 'its there!' : 'its not there!');
+	});
 	Group.findOne({'name' : req.body.name }, function (err, group) {
 		if (err) { callback('Something went wrong!'); return; }
 		if (group) { callback('Name already taken!'); return; }
