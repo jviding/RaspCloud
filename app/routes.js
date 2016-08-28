@@ -80,6 +80,21 @@ module.exports = function (app, passport) {
 		});
 	});
 
+	app.get('/group/:grpId/remove/:usrId', isLoggedAdmin, function (req, res) {
+		Group.findOne({'_id':req.params.grpId}, function (err, group) {
+			if (err) { throw err; }
+			else {
+				group.users.push(req.params.usrId);
+				group.save(function (err) {
+					if (err) { throw err; }
+					else {
+						res.redirect('/group/'+req.params.grpId);
+					}
+				});
+			}
+		});
+	});
+
 	// Logout
 	app.get('/logout', function (req, res) {
 		req.logout();
