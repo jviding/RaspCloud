@@ -4,6 +4,7 @@ var port = 3000;
 var http = require('http').Server(app);
 var morgan = require('morgan');
 var passport = require('passport');
+var fileUpload = require('express-fileupload');
 var session = require('express-session')
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
