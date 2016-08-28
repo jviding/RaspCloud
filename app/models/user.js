@@ -9,7 +9,6 @@ var userSchema = mongoose.Schema({
 		givenName : String,
 		familyName : String
 	},
-	groups: [String],
 	authorized: Boolean,
 	admin : Boolean
 });

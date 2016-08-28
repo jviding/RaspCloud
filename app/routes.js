@@ -88,13 +88,17 @@ module.exports = function (app, passport) {
 		Group.findOne({'_id':req.params.grpId}, function (err, group) {
 			if (err) { throw err; }
 			else {
-				group.users.splice(group.users.indexOf(req.params.usrId), 1);
-				group.save(function (err) {
-					if (err) { throw err; }
-					else {
-						res.redirect('/group/'+req.params.grpId);
-					}
-				});
+				if (group.users.indexOf(req.params.usrId) !== -1 ) {
+					group.users.splice(group.users.indexOf(req.params.usrId), 1);
+					group.save(function (err) {
+						if (err) { throw err; }
+						else {
+							res.redirect('/group/'+req.params.grpId);
+						}
+					});
+				} else {
+					res.redirect('/group/'+req.params.grpId);
+				}
 			}
 		});
 	});
@@ -157,8 +161,8 @@ function createNewGroup(req, callback) {
 // Create a list of all groups
 function getGroups(req, callback) {
 	Group.find({}, function (err, all) {
-		if (err) { callback([]); }
-		callback(all);
+		if (err) { throw err; }
+		else { callback(all); }
 	});
 };
 
