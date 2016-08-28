@@ -24,7 +24,8 @@ function uploadFile (event) {
 			}
 		}
 	};
-	xhr.open('POST', document.getElementById('upform').action, true);
+	/*xhr.open('POST', document.getElementById('upform').action, true);
 	xhr.setRequestHeader('X-FILENAME', document.getElementById('filein').files[0].name);
-	xhr.send(document.getElementById('filein').files[0]);
+	xhr.send(document.getElementById('filein').files[0]);*/
+	document.getElementById('upform').submit();
 };
