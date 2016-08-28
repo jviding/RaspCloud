@@ -1,4 +1,5 @@
 var progbar = document.getElementById('progbar');
+var progval = document.getElementById('progval');
 document.getElementById('submitBtn').addEventListener('click', uploadFile);
 function uploadFile (event) {
 	var xhr = new XMLHttpRequest();
@@ -6,7 +7,7 @@ function uploadFile (event) {
 	xhr.upload.addEventListener('progress', function (e) {
 		if (e.lengthComputable) {
 			var prg = parseInt(e.loaded / e.total * 100);
-			console.log(prg);
+			progval.innerHTML = prg;
 			progbar.style.width = prg+'%';
 		}
 	}, false);
