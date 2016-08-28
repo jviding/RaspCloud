@@ -9,7 +9,7 @@
 	
 	<nav class="navbar navbar-inverse" style="border-radius: 0;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">JasuWeb</a>
+            <a class="navbar-brand" href="#">JasuWeb</a>
             <ul class="nav navbar-nav navbar-right">
             	<li><a href="/profile">Profile</a></li>
             	<li><a href="/logout">Log out</a></li>
@@ -21,7 +21,7 @@
         <h1>Group name: <%= group.name %></h1>
         <h2>Members:</h2>
         <ul style="list-style-type: none;">
-            <% for (var i=0; i<users.length; i++) { if (group.users.indexOf(users.id) !== -1) { %>
+            <% for (var i=0; i<users.length; i++) { if (group.users.indexOf(users[i].id) !== -1) { %>
                 <li><%= users[i].facebook.familyName %> <%= users[i].facebook.givenName %> <a href="/group/<%= group.id %>/remove/<%= users[i].id %>">Remove</a></li><br>
             <% } } %>
         </ul>
@@ -31,7 +31,7 @@
     	<div class="jumbotron text-center">
     		<h2>Other users:</h2>
 			<ul style="list-style-type: none;">
-				<% for (var i=0; i<users.length; i++) { if (group.users.indexOf(users.id) === -1) { %>
+				<% for (var i=0; i<users.length; i++) { if (group.users.indexOf(users[i].id) === -1) { %>
    					<li><%= users[i].facebook.familyName %> <%= users[i].facebook.givenName %> <a href="/group/<%= group.id %>/add/<%= users[i].id %>">Add</a></li><br>
 				<% } } %>
 			</ul>
