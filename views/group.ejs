@@ -11,12 +11,18 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">JasuWeb</a>
             <ul class="nav navbar-nav navbar-right">
+            	<li><a href="/profile">Profile</a></li>
             	<li><a href="/logout">Log out</a></li>
           	</ul>
         </div>
     </nav>
 
-    <h1><%= group.name %></h1>
+    <div class="container">
+    	<div class="jumbotron text-center">
+    		<h1><%= group.name %></h1>
+			<a href="/profile/group/<%= group.id %>/download">Download pics</a>
+    	</div>
+    </div>
 
 </div>
 </body>

@@ -1,3 +1,4 @@
+var fs = require('fs');
 var Group = require('../app/models/group');
 var User = require('../app/models/user');
 
@@ -111,6 +112,9 @@ module.exports = function (app, passport) {
 			});
 		});
 	});
+	app.get('/profile/group/:grpId/download', isAuthorized, function (req, res) {
+
+	});
 
 	// Logout
 	app.get('/logout', function (req, res) {
@@ -161,6 +165,7 @@ function notLoggedIn(req, res, next) {
 
 // Create a new group
 function createNewGroup(req, callback) {
+
 	Group.findOne({'name' : req.body.name }, function (err, group) {
 		if (err) { callback('Something went wrong!'); return; }
 		if (group) { callback('Name already taken!'); return; }
