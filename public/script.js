@@ -15,6 +15,7 @@ function uploadFile (event) {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
 				console.log('success');
+				location.reload();
 			} else {
 				console.log('failure');
 			}
