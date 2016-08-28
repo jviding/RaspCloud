@@ -6,7 +6,7 @@ if(e&&1===a.nodeType)while(c=e[d++])a.removeAttribute(c)}}),hb={set:function(a,b
 
 document.getElementById('submitBtn').addEventListener('click', uploadFile);
 function uploadFile (event) {
-	event.preventDefault();
+	//event.preventDefault();
 	var xhr = new XMLHttpRequest();
 	var progbar = document.getElementById('progbar');
 	xhr.upload.addEventListener('progress', function (e) {
@@ -24,8 +24,20 @@ function uploadFile (event) {
 			}
 		}
 	};
-	/*xhr.open('POST', document.getElementById('upform').action, true);
+	xhr.open('POST', document.getElementById('upform').action, true);
 	xhr.setRequestHeader('X-FILENAME', document.getElementById('filein').files[0].name);
-	xhr.send(document.getElementById('filein').files[0]);*/
-	document.getElementById('upform').submit();
+	xhr.send(document.getElementById('filein').files[0]);
 };
+/*
+document.getElementById('upform').submit(function (e) {
+	var xhr = new XMLHttpRequest();
+	xhr.upload.addEventListener('progress', function (e) {
+		if (e.lengthComputable) {
+			var prg = parseInt(100 - (e.loaded / e.total * 100));
+			console.log(prg);
+		}
+	}, false);
+	xhr.open('POST', document.getElementById('upform').action, true);
+	xhr.setRequestHeader('X-FILENAME', document.getElementById('filein').files[0].name);
+	xhr.send(document.getElementById('filein').files[0]);
+});*/
