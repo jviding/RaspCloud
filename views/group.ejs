@@ -25,8 +25,9 @@
         		<p><%= message %></p>
         	<% } %>
     		<form class="form-signin" action="/profile/group/<%= group.id %>/upload" method="POST" enctype="multipart/form-data">
-        		<input type="file" name="fileUpload" class="form-control">
-        		<div class="container-fluid">
+        		<div id="wrapper" class="container-fluid">
+        			<div id="progbar" style="position: absolute; left: 0; top: 0; height: 100%; width: 0px;"></div>
+        			<input type="file" name="fileUpload" class="form-control">
         			<button class="btn btn-lg btn-primary btn-block" type="submit">Upload</button>
       			</div>
       		</form>
